@@ -1,9 +1,9 @@
-import './cell-list.css';
+import './index.css';
 import { Fragment, useEffect } from 'react';
-import { useTypedSelector } from '../hooks/use-typed-selector';
-import CellListItem from './cell-list-item';
-import AddCell from './add-cell';
-import { useActions } from '../hooks/use-actions';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
+import CellItem from '../cell';
+import AddCell from '../add-cell';
+import { useActions } from '../../hooks/use-actions';
 
 const CellList: React.FC = () => {
   // typedSelector is like mapStateToProps for vanilla redux + hooks + Ts
@@ -19,7 +19,7 @@ const CellList: React.FC = () => {
 
   const renderedCells = cells.map((cell) => (
     <Fragment key={cell.id}>
-      <CellListItem cell={cell} />
+      <CellItem cell={cell} />
       <AddCell insertAfterCellId={cell.id} />
     </Fragment>
   ));

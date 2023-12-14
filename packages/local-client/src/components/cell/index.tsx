@@ -1,14 +1,14 @@
-import './cell-list-item.css';
-import { Cell } from '../state';
+import './index.css';
+import { Cell } from '../../state';
 import CodeCell from './code-cell';
 import TextEditor from './text-editor';
-import ActionBar from './action-bar';
+import ActionBar from '../action-bar';
 
-interface CellListItemProps {
+interface CellItemProps {
   cell: Cell;
 }
 
-const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
+const CellItem: React.FC<CellItemProps> = ({ cell }) => {
   let child: JSX.Element;
   
   if (cell.type === 'code') {
@@ -29,7 +29,7 @@ const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
     );
   }
 
-  return <div className="cell-list-item">{child}</div>;
+  return <div className="cell-item">{child}</div>;
 };
 
-export default CellListItem;
+export default CellItem;
