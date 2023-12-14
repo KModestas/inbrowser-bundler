@@ -11,6 +11,8 @@ const CellList: React.FC = () => {
     // return each cell in the correct order
     order.map((id) => data[id])
   );
+
+  // fetch cells that are saved to the file
   const { fetchCells } = useActions();
 
   useEffect(() => {

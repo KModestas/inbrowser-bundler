@@ -18,7 +18,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const cumulativeCode = useCumulativeCode(cell.id);
 
   useEffect(() => {
-    // no need to debounce on initialise page load. create the bundle asap
+    // no need to debounce on initialise page load. create the bundle ASAP
     if (!bundle) {
       createBundle(cell.id, cumulativeCode);
       return;
@@ -32,7 +32,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     return () => {
       clearTimeout(timer);
     };
-    // we dont want to add bundle to as a dep or we will get an infinity loop. Disable warning instead:
+    // we dont want to add bundle as a dep or we will get an infinity loop. Disable warning instead:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cumulativeCode, cell.id, createBundle]);
 
@@ -60,7 +60,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
               </progress>
             </div>
           ) : (
-            <CodePreview code={bundle.code} err={bundle.err} />
+            <CodePreview bundledCode={bundle.code} err={bundle.err} />
           )}
         </div>
       </div>

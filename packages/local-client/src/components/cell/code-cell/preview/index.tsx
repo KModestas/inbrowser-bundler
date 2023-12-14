@@ -2,7 +2,7 @@ import './index.css';
 import { useRef, useEffect } from 'react';
 
 interface CodePreviewProps {
-  code: string;
+  bundledCode: string;
   err: string;
 }
 
@@ -40,7 +40,7 @@ const html = `
     </html>
   `;
 
-const CodePreview: React.FC<CodePreviewProps> = ({ code, err }) => {
+const CodePreview: React.FC<CodePreviewProps> = ({ bundledCode, err }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
@@ -48,9 +48,9 @@ const CodePreview: React.FC<CodePreviewProps> = ({ code, err }) => {
     iframe.current.srcdoc = html;
     setTimeout(() => {
       // emit message to the iframe, passing in all of the bundled code (delay by 50ms to allow new html srcDoc to be rendered)
-      iframe.current.contentWindow.postMessage(code, '*');
+      iframe.current.contentWindow.postMessage(bundledCode, '*');
     }, 50);
-  }, [code]);
+  }, [bundledCode]);
 
   return (
     <div className="preview-wrapper">

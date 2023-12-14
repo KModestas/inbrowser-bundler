@@ -16,7 +16,7 @@ const bundle = async (rawCode: string) => {
 
   try {
     const result = await service.build({
-      // NOTE: there is no index.js file
+      // NOTE: there is no index.js file, we just the literal value inside fetchPlugin to intercept the build process during the initial phase
       entryPoints: ['index.js'],
       bundle: true,
       write: false,

@@ -11,6 +11,7 @@ interface CellItemProps {
 const CellItem: React.FC<CellItemProps> = ({ cell }) => {
   let child: JSX.Element;
   
+  // render code cell
   if (cell.type === 'code') {
     child = (
       <>
@@ -21,6 +22,7 @@ const CellItem: React.FC<CellItemProps> = ({ cell }) => {
       </>
     );
   } else {
+    // render text cell
     child = (
       <>
         <TextEditor cell={cell} />
