@@ -17,17 +17,14 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
     let timer: any;
 
     const listener = () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
+      if (timer) clearTimeout(timer);
 
       timer = setTimeout(() => {
         // recalculate window width + height whenever user resizes the window
         setInnerHeight(window.innerHeight);
         setInnerWidth(window.innerWidth);
-        if (window.innerWidth * 0.75 < width) {
-          setWidth(window.innerWidth * 0.75);
-        }
+
+        if (window.innerWidth * 0.75 < width) setWidth(window.innerWidth * 0.75);
       // debounce to prevent too many re-renders + lag
       }, 100);
     };
@@ -35,8 +32,23 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
 
     return () => {
       window.removeEventListener('resize', listener);
-    };
+    }
   }, [width]);
+
+    // dismiss strange ResizeObserver loop error
+    useEffect(() => {
+    const resizeErrorListener = (e: ErrorEvent) => {
+      //   prettier-ignore
+      if (e.message ==="ResizeObserver loop completed with undelivered notifications.") {
+              const resizeObserverErrDiv = document.getElementById("webpack-dev-server-client-overlay-div");
+              const resizeObserverErr = document.getElementById("webpack-dev-server-client-overlay");
+              if (resizeObserverErr) resizeObserverErr.setAttribute("style", "display: none")
+              if (resizeObserverErrDiv)  resizeObserverErrDiv.setAttribute("style", "display: none");
+            }
+    };
+    window.addEventListener("error", resizeErrorListener);
+    return () => window.removeEventListener("error", resizeErrorListener);
+  }, []);
 
   // NOTE: we are using Infinity as a value because react-resizable doesn't support percentages so we cant set 100%
   if (direction === 'horizontal') {
