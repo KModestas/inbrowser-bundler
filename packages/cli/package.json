@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.lerna bootstrapNODE_ENV=\\\"production\\\""
+    "build": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.lernabootstrapNODE_ENV=\\\"production\\\"",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
