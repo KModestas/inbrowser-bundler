@@ -3,6 +3,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import path from 'path';
 import { createCellsRouter } from './routes/cells';
 
+// NOTE: this function is imported and executed by the cli to start the server.
 export const serve = (
   port: number,
   filename: string,
@@ -27,9 +28,11 @@ export const serve = (
   } else {
     // serve static build files directly (if we publish this CLI tool to npm and user installs it and uses it locally - no need for the extra overhead of react dev server)
 
+    // resolve the absolute path of the @jsnote/local-client and provide it to express.static
     const packagePath = require.resolve(
       '@jsnote/local-client/build/index.html'
     );
+
     app.use(express.static(path.dirname(packagePath)));
   }
 

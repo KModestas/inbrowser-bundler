@@ -24,7 +24,7 @@ export const serveCommand = new Command()
     };
 
     try {
-      // if user enters a path as a filename  e.g. path/to/myfile.txt 
+      // if user enters a path as an argument to filename  e.g. path/to/myfile.txt 
       const dir = path.join(process.cwd(), path.dirname(filename)); // => path/to
       // extract just the filename from the path:
       const file = path.basename(filename) // => filename.txt

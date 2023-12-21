@@ -105,6 +105,7 @@ export const saveCells = () => {
     const cells = order.map((id) => data[id]);
 
     try {
+      // make post request to the local-api at localhost:4005/cells to save the cells to notebook.js
       await axios.post('/cells', { cells });
     } catch (err) {
       if (err instanceof Error) {

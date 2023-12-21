@@ -32,7 +32,7 @@ exports.serveCommand = new commander_1.Command()
         return typeof err.code === 'string';
     };
     try {
-        // if user enters a path as a filename  e.g. path/to/myfile.txt 
+        // if user enters a path as an argument to filename  e.g. path/to/myfile.txt 
         const dir = path_1.default.join(process.cwd(), path_1.default.dirname(filename)); // => path/to
         // extract just the filename from the path:
         const file = path_1.default.basename(filename); // => filename.txt
